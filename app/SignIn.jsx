@@ -1,38 +1,26 @@
-// Import necessary components and hooks from React Native and other libraries
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
-import {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Heading from '../components/Heading';
 import CustomButton from '../components/CustomButton';
 import colors from '../assets/colors';
 import SocialIcons from '../components/SocialIcons';
-import { useRouter } from 'expo-router';
+import {useRouter} from 'expo-router';
+import Icon from 'react-native-vector-icons/FontAwesome'; // Import the Icon component
 
-// Define the Login component
 const Login = ({navigation}) => {
-    // Use the useRouter hook from expo-router to access the router object
     const router = useRouter();
-    
-    // Use the useState hook to manage the state of the email and password input fields
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
-    // Return the JSX for the Login component
+    const [showPassword, setShowPassword] = useState(false); // Add a state to manage the visibility of the password
+
     return (
         <SafeAreaView className="container px-7 bg-white h-full">
-            <View className="mt-36">
-                <Heading content="Welcome Back" />
-            </View>
+            {/* ... */}
             <View className="mt-4">
+                {/* ... */}
                 <TextInput
-                    onChangeText={setEmail}
-                    placeholder={'Email'}
-                    placeholderTextColor={colors.textDark}
-                    value={email}
-                    className="bg-zinc-200 py-3 rounded-xl pl-5"
-                />
-                <TextInput
-                    secureTextEntry={true}
+                    secureTextEntry={!showPassword} // Update the secureTextEntry prop based on the showPassword state
                     onChangeText={setPassword}
                     placeholder={'Password'}
                     placeholderTextColor={colors.textDark}
@@ -45,29 +33,16 @@ const Login = ({navigation}) => {
                 >
                     <Text className="font-bold text-textDark">Forgot Password?</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    className="absolute right-5 top-5"
+                    onPress={() => setShowPassword(!showPassword)} // Toggle the showPassword state when the button is clicked
+                >
+                    <Icon name={showPassword ? 'eye' : 'eye-slash'} size={24} color={colors.textDark} />
+                </TouchableOpacity>
             </View>
-            <CustomButton
-                navigation={navigation}
-                bgColor={colors.primary}
-                textColor={colors.textWhite}
-                goto={'Items'}
-                content={'Login'}
-            />
-            <View className="mt-10">
-                <Text className="text-center text-textDark">Or Continue With</Text>
-                <View className="mt-2">
-                    <SocialIcons />
-                </View>
-                <View className="flex flex-row items-center justify-center mt-44">
-                    <Text className="text-textDark">Does'nt have a accout?</Text>
-                    <TouchableOpacity onPress={() => router.push('SignUp')}>
-                        <Text className="underline text-textDark">Signup</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            {/* ... */}
         </SafeAreaView>
     );
 };
 
-// Export the Login component
 export default Login;
