@@ -2,7 +2,7 @@
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
+import { useRouter } from 'expo-router';
 // Import custom components
 import Heading from '../components/Heading';
 import CustomButton from '../components/CustomButton';
@@ -17,8 +17,6 @@ const Signup = ({navigation}) => {
   const router = useRouter();
   
   // Set up state variables for form fields using the useState hook
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,39 +25,12 @@ const Signup = ({navigation}) => {
     // Use SafeAreaView to ensure content is displayed within the safe area
     <SafeAreaView className="container px-7 h-full bg-white">
       {/* Display a heading for the Signup screen */}
-      <View className="mt-24">
+      <View className="mt-36">
         <Heading content="Create Account" />
       </View>
 
       {/* Render the form fields for the user to input their information */}
       <View className="mt-4">
-        {/* First Name input field */}
-        <TextInput
-          // Update the firstName state when the text changes
-          onChangeText={setFirstName}
-          // Set the placeholder text
-          placeholder={'First Name'}
-          // Set the placeholder text color
-          placeholderTextColor={colors.textDark}
-          // Display the user's current first name input
-          value={firstName}
-          // Style the input field
-          className="bg-zinc-200 py-3 rounded-xl px-5 text-textgray"
-        />
-
-        {/* Last Name input field */}
-        <TextInput
-          // Update the lastName state when the text changes
-          onChangeText={setLastName}
-          // Set the placeholder text
-          placeholder={'Last Name'}
-          // Set the placeholder text color
-          placeholderTextColor={colors.textDark}
-          // Display the user's current last name input
-          value={lastName}
-          // Style the input field
-          className="bg-zinc-200 py-3 rounded-xl px-5 mt-3 text-textgray"
-        />
 
         {/* Email input field */}
         <TextInput
@@ -91,16 +62,7 @@ const Signup = ({navigation}) => {
           secureTextEntry={true}
         />
 
-        {/* Forgot Password? touchable opacity for navigation */}
-        <TouchableOpacity
-          // Style the touchable opacity
-          className="flex items-end mt-2"
-          // Navigate back to the previous screen when pressed
-          onPress={() => navigation.goBack()}
-        >
-          {/* Display the Forgot Password? text */}
-          <Text className="font-bold text-textgray">Forgot Password?</Text>
-        </TouchableOpacity>
+        
       </View>
 
       {/* Custom Button component for Signup */}
@@ -120,15 +82,8 @@ const Signup = ({navigation}) => {
       {/* Container for alternative sign-in methods */}
       <View className="mt-10">
         {/* Display a message for users with existing accounts */}
-        <Text className="text-center text-textgray">
-          Or Continue With
-        </Text>
-        {/* Social Icons component for alternative sign-in methods */}
-        <View className="mt-2">
-          <SocialIcons />
-        </View>
-
-        {/* Container for existing account navigation */}
+        
+                {/* Container for existing account navigation */}
         <View className="flex flex-row items-center justify-center mt-24">
           {/* Display a message for users with existing accounts */}
           <Text className="text-textgray">

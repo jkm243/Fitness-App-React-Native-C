@@ -47,7 +47,7 @@ export default function SignInSignUp() {
 
         <Animated.View entering={FadeInDown.delay(300).springify()}>
           <TouchableOpacity
-            onPress={() => router.push('signUp')}
+            onPress={() => router.push('SignUp')}
             style={{ height: hp(7), width: wp(80) }}
             className="bg-neutral-200 flex items-center justify-center mx-auto rounded-full border-[2px] border-rose-500"
           >

@@ -53,26 +53,19 @@ const Login = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* Forgot password functionality */}
-      <TouchableOpacity className="flex items-end mt-2" onPress={() => navigation.goBack()}>
-        <Text className="font-bold text-textDark">Forgot Password?</Text>
-      </TouchableOpacity>
 
       {/* CustomButton for login functionality */}
       <CustomButton
         navigation={navigation}
         bgColor={colors.primary}
         textColor={colors.textWhite}
-        goto={'Items'}
+        goto={() => router.push('SignUp')}
         content={'Login'}
       />
 
       {/* Social Icons and Signup functionality */}
       <View className="mt-10">
-        <Text className="text-center text-textDark">Or Continue With</Text>
-        <View className="mt-2">
-          <SocialIcons />
-        </View>
+        
         <View className="flex flex-row items-center justify-center mt-44">
           <Text className="text-textDark">Does'nt have a accout?</Text>
           <TouchableOpacity onPress={() => router.push('SignUp')}>
